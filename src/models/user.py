@@ -52,6 +52,10 @@ class User:
         # login_valid has already been called
         session['email'] = user_email
 
+    @staticmethod
+    def logout():
+        session['email'] = None
+
     def get_blogs(self):
         pass
 
