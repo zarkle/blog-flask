@@ -1,8 +1,8 @@
 """Blog class."""
 from uuid import uuid4
 from datetime import datetime
-from post import Post
-from database import Database
+from .post import Post
+from src.common.database import Database
 
 blog = Blog(author='Joe', title='Some title', description='stuff and things')
 

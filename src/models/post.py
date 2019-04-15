@@ -1,5 +1,5 @@
 """Class definition for Post collection."""
-from database import Database
+from src.common.database import Database
 from uuid import uuid4
 from datetime import datetime
 
