@@ -11,22 +11,40 @@ class User:
 
     @classmethod
     def get_by_email(cls, email):
-        """Find if user exists in database."""
+        """Find if user exists in database by email."""
         data = Database.find_one('users', {'email': self.email})
         if data:
             return cls(**data)
 
     @classmethod
     def get_by_id(cls, _id):
+        """Find if user exists in database by id."""
         data = Database.find_one('users', {'_id': self._id})
         if data:
             return cls(**data)
 
-    def login_valid(self):
-        pass
+    @classmethod
+    def login_valid(email, password):
+        """
+        Verify user is logged in by entering correct password.
+        User.login_valid("email@email.com", "password")
+        """
+        user = cls.get_by_email(email)
+        if user:
+            # check the password
+            return user.password == password
+        return False  # user doesn't exist
 
-    def registerself):
-        pass
+    @classmethod
+    def register(cls, email, password):
+        """Register a new user."""
+        user = cls.get_by_email(email)
+        if user:
+            new_user = cls(email, password)
+            new_user.save_to_mongo
+            return True
+        else:  # user already exists; TODO: add feedback as to why registration failed
+            return False
 
     def login(self):
         pass
