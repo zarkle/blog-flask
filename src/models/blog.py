@@ -54,7 +54,4 @@ class Blog():
     @classmethod
     def from_mongo(cls, id):
         blog_data = Database.find_one(collection='blogs', query={'_id': id})
-        return cls(author=blog_data['author'],
-                    title=blog_data[''],
-                    description=blog_data['description'],
-                    _id=blog_data['_id'])
+        return cls(**blog_data)
