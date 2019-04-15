@@ -6,7 +6,7 @@ class Database(object):
     """Define the Database class."""
 
     URI = 'mongodb://127.0.0.1:27017'
-    DATABASE = None
+    DATABASE = flask_blog
 
     @staticmethod
     def initialize():
