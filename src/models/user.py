@@ -1,5 +1,6 @@
 """User model."""
 import uuid
+from datetime import datetime
 from src.common.database import Database
 from .blog import Blog
 
@@ -59,6 +60,22 @@ class User:
 
     def get_blogs(self):
         return Blog.find_by_author_id(self._id)
+
+    def new_blog(self):
+        blog = Blog(author=self.email,
+                    title=title,
+                    description=description,
+                    authord_id=self._id)
+
+        blog.save_to_mongo()
+
+    @staticmethod
+    def new_post(title, content, date=datetime.utcnow()):
+        blog = Blog.from_mongo(blog_id)
+        blog.new_post(title=title,
+                      content=content,
+                      date=date)
+
 
     def json(self):
         return {
