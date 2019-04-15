@@ -7,13 +7,13 @@ from datetime import datetime
 class Post():
     """Blog post."""
 
-    def __init__(self, blog_id, title, content, author, date=datetime.utcnow(), id=None):
+    def __init__(self, blog_id, title, content, author, date=datetime.utcnow(), _id=None):
         self.blog_id = blog_id
         self.title = title
         self.content = content
         self.author = author
         self.created_date = date
-        self.id = uuid4().hex if id is None else id
+        self._id = uuid4().hex if _id is None else _id
 
     def save_to_mongodb(self):
         """Save post to database. Grab post from self.json() method and insert into database."""
@@ -22,7 +22,7 @@ class Post():
     def json(self):
         """Create JSON representation (key/value set) of the post."""
         return {
-            'id': self.id,
+            '_id': self._id,
             'blog_id': self.blog_id,
             'author': self.author,
             'content': self.content,
@@ -39,9 +39,9 @@ class Post():
                     content=post_data['content'],
                     author=post_data['author'],
                     date=post_date['created_date'],
-                    id=post_data['id'])
+                    _id=post_data['_id'])
 
     @staticmethod
-    def from_blog(id):
+    def from_blog(_id):
         """Return all posts belonging to a specific blog."""
-        return [post for post in Database.find(collection='posts', query={'blog_id': id})]
+        return [post for post in Database.find(collection='posts', query={'blog_id': _id})]

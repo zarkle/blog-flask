@@ -1,5 +1,5 @@
 """Blog class."""
-from uu_id import uuid4
+from uuid import uuid4
 from datetime import datetime
 from post import Post
 from database import Database
@@ -20,7 +20,7 @@ class Blog():
         self.author = author
         self.title = title
         self.description = description
-        self._id = uu_id4().hex if _id is None else _id
+        self._id = uuid4().hex if _id is None else _id
 
     def new_post(self):
         title = input('Enter post title: ')
@@ -30,7 +30,7 @@ class Blog():
             date = datetime.datetime.utcnow()
         else:
             datetime.strptime(date, '%d%m%Y')
-        post = Post(blog__id=self._id,
+        post = Post(blog_id=self._id,
                     title=title,
                     content=content,
                     author=self.author
