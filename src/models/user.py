@@ -60,7 +60,11 @@ class User:
         pass
 
     def json(self):
-        pass
+        return {
+            'email': self.email,
+            '_id': self._id,
+            'password': self.password  # not encrypted yet
+        }
 
     def save_to_mongo(self):
-        pass
+        Database.insert('users', self.json())
