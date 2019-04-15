@@ -2,8 +2,9 @@
 
 
 class User:
-    def __init__(self):
-        pass
+    def __init__(self, email, password):
+        self.email = email
+        self.password = password
 
     def get_by_email(self):
         pass
@@ -21,4 +22,10 @@ class User:
         pass
 
     def get_blogs(self):
+        pass
+
+    def json(self):
+        pass
+
+    def save_to_mongo(self):
         pass
