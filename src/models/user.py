@@ -42,12 +42,15 @@ class User:
         if user:
             new_user = cls(email, password)
             new_user.save_to_mongo
+            session['email'] = email
             return True
         else:  # user already exists; TODO: add feedback as to why registration failed
             return False
 
-    def login(self):
-        pass
+    @staticmethod
+    def login(user_email):
+        # login_valid has already been called
+        session['email'] = user_email
 
     def get_blogs(self):
         pass
