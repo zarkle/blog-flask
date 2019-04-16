@@ -4,7 +4,7 @@ from .common.database import Database
 
 
 app = Flask(__name__)
-# app.secret_key('key')
+app.secret_key = 'key'
 
 
 @app.route('/')
@@ -24,9 +24,10 @@ def login_user():
 
     if User.login_valid(email, password):
         User.login(email)
-    import pdb; pdb.set_trace()
+    else:
+        session['email'] = None
 
-    return render_template('profile.html', email=email)
+    return render_template('profile.html', email=session['email'])
 
 if __name__ == "__main__":
     app.run()
