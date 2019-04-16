@@ -1,4 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
 <h1>Welcome</h1>
+<a href="{{ url_for('login_template') }}">Login</a> or
+<a href="{{ url_for('register_template') }}">Register</a>
 {% endblock content %}
