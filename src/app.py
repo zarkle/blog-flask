@@ -50,5 +50,17 @@ def register_user():
     return render_template('profile.html', email=session['email'])
 
 
+@app.route('/blogs/<string:user_id>')
+@app.route('/blogs/')
+def user_blogs(user_id=None):
+    if user_id:
+        user = User.get_by_id(user_id)
+    else:
+        user = User.get_by_email(session['email'])
+    blogs = user.get_blogs()
+
+    return render_template('user_blogs.html', email=user.email, blogs=blogs)
+
+
 if __name__ == "__main__":
     app.run()
