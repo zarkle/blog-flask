@@ -24,7 +24,7 @@ def login_user():
     if User.login_valid(email, password):
         User.login(email)
 
-    return render_template('profile.html', email=session['email'])
+    return render_template('profile.html', email=email)
 
 if __name__ == "__main__":
     app.run()

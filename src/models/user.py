@@ -14,7 +14,7 @@ class User:
     @classmethod
     def get_by_email(cls, email):
         """Find if user exists in database by email."""
-        data = Database.find_one('users', {'email': self.email})
+        data = Database.find_one('users', {'email': email})
         if data:
             return cls(**data)
 
@@ -26,7 +26,7 @@ class User:
             return cls(**data)
 
     @classmethod
-    def login_valid(email, password):
+    def login_valid(cls, email, password):
         """
         Verify user is logged in by entering correct password.
         User.login_valid("email@email.com", "password")
