@@ -46,14 +46,3 @@ class Blog:
         """Search by author_id."""
         blogs = Database.find(collection='blogs', query={'author_id': author_id})
         return [cls(**blog) for blog in blogs]
-
-
-blog = Blog(author='Joe', title='Some title', description='stuff and things')
-
-blog.new_post()
-
-blog.save_to_mongo()
-
-Blog.get_from_mongo()
-
-blog.get_posts()
