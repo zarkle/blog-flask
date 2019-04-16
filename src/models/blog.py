@@ -4,19 +4,9 @@ from datetime import datetime
 from .post import Post
 from src.common.database import Database
 
-blog = Blog(author='Joe', title='Some title', description='stuff and things')
 
-blog.new_post()
-
-blog.save_to_mongo()
-
-Blog.get_from_mongo()
-
-blog.get_posts()
-
-
-class Blog():
-    def __init__(self, author, title, description, authord_id, _id=None):
+class Blog:
+    def __init__(self, author, title, description, author_id, _id=None):
         self.author = author
         self.author_id = author_id
         self.title = title
@@ -27,7 +17,7 @@ class Blog():
         post = Post(blog_id=self._id,
                     title=title,
                     content=content,
-                    author=self.author
+                    author=self.author,
                     date=date)
         post.save_to_mongo()
 
@@ -56,3 +46,14 @@ class Blog():
         """Search by author_id."""
         blogs = Database.find(collection='blogs', query={'author_id': author_id})
         return [cls(**blog) for blog in blogs]
+
+
+blog = Blog(author='Joe', title='Some title', description='stuff and things')
+
+blog.new_post()
+
+blog.save_to_mongo()
+
+Blog.get_from_mongo()
+
+blog.get_posts()

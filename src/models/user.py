@@ -65,7 +65,7 @@ class User:
         blog = Blog(author=self.email,
                     title=title,
                     description=description,
-                    authord_id=self._id)
+                    author_id=self._id)
 
         blog.save_to_mongo()
 
